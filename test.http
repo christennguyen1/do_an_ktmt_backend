@@ -1,0 +1,106 @@
+### Get all data temperature and humidity
+GET http://192.168.1.235:5000/api/data
+
+
+### Get data according sensors (humidity or temperature)
+GET http://127.0.0.1:5000/api/data/sensors?variable=humidity
+
+
+### Get all data temperature and humidity
+GET http://127.0.0.1:5000/api/data/sensors/latest
+
+
+### Get data according sensors and timestamps (humidity or temperature)
+GET http://127.0.0.1:5000/api/data/sensorToTime?variable=temperature&start_date=2024-09-01&end_date=2024-09-30
+
+
+### Register users
+POST http://127.0.0.1:5000/api/users/register
+Content-Type: application/json
+
+{
+    "email": "trungnguyen@gmail.com",
+    "username": "trungnguyen20",
+    "password": "123456",
+    "name": "Trung Nguyen",
+    "phoneNumber": "037466892",
+    "address": "Road A block B"
+}
+
+
+### Login users
+POST http://127.0.0.1:5000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "trungnguyen@gmail.com",
+    "password": "12345678"
+}
+
+
+### Update password users
+POST http://127.0.0.1:5000/api/users/updatePassword
+Content-Type: application/json
+
+{
+    "email": "trungnguyen@gmail.com",
+    "password": "12345678"
+}
+
+
+### Update information users
+POST http://127.0.0.1:5000/api/users/update
+Content-Type: application/json
+
+{
+    "email": "trungnguyen@gmail.com",
+    "name": "Trung Nguyen Thanh",
+    "phoneNumber": "01234567",
+    "address": "Road N, Block K"
+}
+
+
+### Delete users
+POST http://127.0.0.1:5000/api/users/delete
+Content-Type: application/json
+
+{
+    "email": "trungnguyen@gmail.com"
+}
+
+
+### Update relay
+PATCH http://127.0.0.1:5000/api/data/relay/update
+Content-Type: application/json
+
+{
+    "relayName": "nutnhan1",
+    "status": "OFF"
+}
+
+
+### Create relay
+POST http://127.0.0.1:5000/api/data/relay/create
+Content-Type: application/json
+
+{
+    "relayName": "nutnhan1",
+    "status": "ON"
+}
+
+
+### Delete relay
+POST http://127.0.0.1:5000/api/data/relay/delete
+Content-Type: application/json
+
+{
+    "relayName": "nutnhan1"
+}
+
+
+### Get all data relay
+GET http://10.28.129.153:5000/api/data/relay/all
+
+
+### Get data relay detail
+GET http://10.28.129.153:5000/api/data/relay?variable=nutnhan1
