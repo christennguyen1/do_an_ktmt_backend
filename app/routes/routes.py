@@ -1,7 +1,6 @@
 from flask import Blueprint
 from app.controllers.controllers import get_all_data_controller, get_data_sensor_controller, get_data_sensor_toTime_contoller, login_user_controller, register_user_controller, update_data_relay_controller, create_data_relay_controller, delete_data_relay_controller, delete_user_controller, update_password_user_controller, update_user_controller, upload_avatar_user_controller, get_avatar_user_controller, get_data_latest_controller, get_data_relay_controller, get_data_relay_detail_controller
 
-
 data_routes = Blueprint('data_routes', __name__)
 
 
@@ -40,6 +39,9 @@ data_routes.route('/api/data/relay/delete', methods=['POST'])(delete_data_relay_
 
 #User
 data_routes.route('/api/users/login', methods=['POST'])(login_user_controller)
+
+
+data_routes.route('/api/admin/register', methods=['POST'])(register_user_controller)
 
 
 data_routes.route('/api/users/register', methods=['POST'])(register_user_controller)

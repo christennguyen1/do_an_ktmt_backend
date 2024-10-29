@@ -304,6 +304,7 @@ def register_user_service():
     email = data.get('email')
     phoneNumber = data.get('phoneNumber')
     address = data.get('address')
+    role = data.get('role')
 
     user = collection_user.find_one({'email': email})
 
@@ -318,6 +319,7 @@ def register_user_service():
         'email': email,
         'phoneNumber': phoneNumber,
         'address': address,
+        'role': role,
         'isDeleted': False
     }
 
@@ -340,6 +342,7 @@ def register_user_service():
                     'name': name, 
                     'phoneNumber': phoneNumber, 
                     'address': address, 
+                    'role': role,
                     'isDeleted': False
                     }
                 }

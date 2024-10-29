@@ -22,6 +22,7 @@ def get_all_data_controller():
             "error": 1
         }, 500
     
+
 def get_data_latest_controller():
     try:
         # Truy vấn tất cả các document trong collection
@@ -116,7 +117,7 @@ def register_user_controller():
             "message": str(e),
             "error": 1
         }, 500
-    
+
 
 def delete_user_controller():
     try:
@@ -236,6 +237,7 @@ def get_data_relay_detail_controller():
             "message": str(e),
             "error": 1
         }, 500
+
 
 def update_password_user_controller():
     try:

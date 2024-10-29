@@ -7,9 +7,6 @@ from dotenv import load_dotenv
 mongodb_uri = os.getenv("MONGODB_URI")
 client = MongoClient(
     mongodb_uri,
-    tls=True,
-    tlsAllowInvalidCertificates=True,
-    retryWrites=True
 )
 
 # Truy cập vào database và collection

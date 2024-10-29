@@ -1,5 +1,5 @@
 ### Get all data temperature and humidity
-GET http://192.168.1.235:5000/api/data
+GET http://10.28.129.153:5000/api/data
 
 
 ### Get data according sensors (humidity or temperature)
