@@ -2,7 +2,7 @@ from flask import jsonify
 from io import BytesIO
 from PIL import Image
 from flask import Flask, send_file
-from app.services.service import get_all_data, get_data_sensor_service, get_data_sensor_toTime_service, login_user_service, register_user_service, update_data_relay_service, create_data_relay_service, delete_data_relay_service, delete_data_user_service, update_password_user_service, update_user_service, upload_avatar_user_service, get_avatar_user_service, get_data_latest_service, get_data_relay_detail_service, get_data_all_relay_service
+from app.services.service import get_all_data, get_data_sensor_service, get_data_sensor_toTime_service, login_user_service, register_user_service, update_data_relay_service, create_data_relay_service, delete_data_relay_service, delete_data_user_service, update_password_user_service, update_user_service, upload_avatar_user_service, get_avatar_user_service, get_data_latest_service, get_data_relay_detail_service, get_data_all_relay_service, get_data_relay_history_service
 
 def get_all_data_controller():
     try:
@@ -158,6 +158,26 @@ def update_data_relay_controller():
             "error": 1
         }, 500
     
+
+def get_data_relay_history_controller():
+    try:
+        data, status = get_data_relay_history_service() 
+
+        response = {
+            "message": data.get('message'),
+            "data": data.get('data'),  
+            "status": status, 
+            "errCode": 0  
+        }
+        return jsonify(response), status  
+
+    except Exception as e:
+        return {
+            "status": 500,
+            "message": str(e),
+            "error": 1
+        }, 500
+
 
 def create_data_relay_controller():
     try:

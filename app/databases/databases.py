@@ -17,3 +17,4 @@ fs = gridfs.GridFS(db)
 collection_relay = db["relay"]  # Sensor collection
 collection_sensor = db["sensor"]  # Sensor collection
 collection_user = db["users"]  # User collection
+collection_relay_history = db["relay_history"]

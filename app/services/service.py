@@ -1,4 +1,4 @@
-from app.databases.databases import collection_sensor, collection_user, collection_relay, fs
+from app.databases.databases import collection_sensor, collection_user, collection_relay, fs, collection_relay_history
 from app.models.models import serialize_item
 from flask import Flask, request, jsonify, send_file
 from datetime import datetime
@@ -109,6 +109,8 @@ def update_data_relay_service():
         }
     
     collection_relay.update_one(query, new_values)
+
+    collection_relay_history.insert_one(data)
         
     return {
         'message': 'Relay update successful',
@@ -214,6 +216,15 @@ def create_data_relay_service():
         }
     }, 200
 
+def get_data_relay_history_service():
+    data = list(collection_relay_history.find())
+        
+    # Chuyển đổi kết quả sang dạng có thể JSON hóa
+    result = [serialize_item(item) for item in data]
+    return {
+            'message': 'Get data successful',
+            'data': result
+        }, 200
 
 def delete_data_relay_service():
     data = request.json
