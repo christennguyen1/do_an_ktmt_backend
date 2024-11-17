@@ -4,6 +4,8 @@ from flask import Flask, request, jsonify, send_file
 from datetime import datetime
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.constant.constant import nutnhan
+import pytz
+
 
 def get_all_data():
     data = list(collection_sensor.find())
@@ -85,11 +87,13 @@ def update_data_relay_service():
                 'message': 'Relay not in server', 
                 'errCode': 1
             }, 400
+    vietnam_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+    vietnam_time = datetime.now(vietnam_tz)
     
     data = {
         'relayName': relay_name,
         'status': status_relay,
-        'timestamp': datetime.now()
+        'timestamp': vietnam_time
     }
 
     relay = collection_relay.find_one({'relayName': relay_name})
@@ -101,23 +105,26 @@ def update_data_relay_service():
                 'message': 'Relay not in system', 
                 'errCode': 1
             }, 400
+    
+
     query = {"relayName": relay_name}
     new_values = {
         "$set": {
-            "status": status_relay, "timestamp": datetime.now()
+            "status": status_relay, "timestamp": vietnam_time
             }
         }
     
     collection_relay.update_one(query, new_values)
 
     collection_relay_history.insert_one(data)
+
         
     return {
         'message': 'Relay update successful',
         'data': {
             'relayName': relay_name,
             'status': status_relay,
-            'timestamp': datetime.now()
+            'timestamp': vietnam_time
         }
     }, 200
 
@@ -174,10 +181,13 @@ def create_data_relay_service():
                 'message': 'Relay not in server', 'errCode': 1
             }, 400
     
+    vietnam_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+    vietnam_time = datetime.now(vietnam_tz)
+    
     data = {
         'relayName': relay_name,
         'status': status_relay,
-        'timestamp': datetime.now(),
+        'timestamp': vietnam_time,
         'isDeleted': False
     }
 
@@ -191,10 +201,12 @@ def create_data_relay_service():
                     'errCode': 1
                 }, 400
         else:
+            vietnam_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+            vietnam_time = datetime.now(vietnam_tz)
             query = {"relayName": relay_name}
             new_values = {
                 "$set": {
-                    'status': status_relay, "isDeleted": False, "timestamp": datetime.now()
+                    'status': status_relay, "isDeleted": False, "timestamp": vietnam_time
                     }
                 }
             
@@ -206,13 +218,16 @@ def create_data_relay_service():
                     'errCode': 1
                 }, 400
         collection_relay.insert_one(data)
+
+    vietnam_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+    vietnam_time = datetime.now(vietnam_tz)
         
     return {
         'message': 'Create Relay successful',
         'data': {
             'relayName': relay_name,
             'status': status_relay,
-            'timestamp': datetime.now()
+            'timestamp': vietnam_time
         }
     }, 200
 
@@ -239,21 +254,26 @@ def delete_data_relay_service():
                 'message': 'Relay not in system', 
                 'errCode': 1
             }, 400
+    vietnam_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+    vietnam_time = datetime.now(vietnam_tz)
     
     query = {"relayName": relay_name}
     new_values = {
         "$set": {
-            "isDeleted": True, "timestamp": datetime.now()
+            "isDeleted": True, "timestamp": vietnam_time
             }
         }
     
     collection_relay.update_one(query, new_values)
 
+    vietnam_tz = pytz.timezone('Asia/Ho_Chi_Minh')
+    vietnam_time = datetime.now(vietnam_tz)
+
     return {
         'message': 'Relay delete successful',
         'data': {
             'relayName': relay_name,
-            'timestamp': datetime.now()
+            'timestamp': vietnam_time
         }
     }, 200
     
@@ -322,7 +342,7 @@ def register_user_service():
     # Mã hóa mật khẩu trước khi lưu
     hashed_password = generate_password_hash(password)
 
-    # Thêm người dùng vào cơ sở dữ liệu
+    # Tạo người dùng vào cơ sở dữ liệu
     user_data = {
         'name': name,
         'username': username,
