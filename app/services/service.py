@@ -87,13 +87,17 @@ def update_data_relay_service():
                 'message': 'Relay not in server', 
                 'errCode': 1
             }, 400
+    
     vietnam_tz = pytz.timezone('Asia/Ho_Chi_Minh')
     vietnam_time = datetime.now(vietnam_tz)
+
+    # Định dạng lại chuỗi datetime (bỏ phần microsecond và timezone)
+    formatted_datetime = vietnam_time.strftime("%Y-%m-%d %H:%M:%S")
     
     data = {
         'relayName': relay_name,
         'status': status_relay,
-        'timestamp': vietnam_time
+        'timestamp': formatted_datetime
     }
 
     relay = collection_relay.find_one({'relayName': relay_name})
@@ -110,7 +114,7 @@ def update_data_relay_service():
     query = {"relayName": relay_name}
     new_values = {
         "$set": {
-            "status": status_relay, "timestamp": vietnam_time
+            "status": status_relay, "timestamp": formatted_datetime
             }
         }
     
@@ -124,7 +128,7 @@ def update_data_relay_service():
         'data': {
             'relayName': relay_name,
             'status': status_relay,
-            'timestamp': vietnam_time
+            'timestamp': formatted_datetime
         }
     }, 200
 
