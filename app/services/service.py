@@ -217,7 +217,7 @@ def create_data_relay_service():
     }, 200
 
 def get_data_relay_history_service():
-    data = list(collection_relay_history.find())
+    data = collection_relay_history.find().sort("timestamp", -1).limit(10)
         
     # Chuyển đổi kết quả sang dạng có thể JSON hóa
     result = [serialize_item(item) for item in data]
