@@ -35,14 +35,13 @@ def disconnected(client):
     sys.exit (1)
 
 
-client = MQTTClient(AIO_USERNAME , AIO_KEY)
-client.on_connect = connected
-client.on_disconnect = disconnected
-client.on_subscribe = subscribe
-client.connect()
-client.loop_background()
-
 def publish_to_adafruit(feed, value):
+    client = MQTTClient(AIO_USERNAME , AIO_KEY)
+    client.on_connect = connected
+    client.on_disconnect = disconnected
+    client.on_subscribe = subscribe
+    client.connect()
+    client.loop_background()
     print("Ket noi voi adafruit ...")
     client.publish(feed, value)
     print(feed, " - ", value)

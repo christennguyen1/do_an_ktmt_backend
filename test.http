@@ -78,9 +78,19 @@ PATCH https://do-an-ktmt-backend.onrender.com/api/data/relay/update
 Content-Type: application/json
 
 {
-    "relayName": "nutnhan2",
+    "relayName": "nutnhan1",
     "status": "ON"
 }
+
+### Update relay
+PATCH http://127.0.0.1:8080/api/data/relay/update
+Content-Type: application/json
+
+{
+    "relayName": "nutnhan1",
+    "status": "OFF"
+}
+
 
 
 ### Create relay
