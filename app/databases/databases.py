@@ -42,4 +42,5 @@ client.connect()
 client.loop_background()
 
 def publish_to_adafruit(feed, value):
+    print("Ket noi voi adafruit ...")
     client.publish(feed, value)

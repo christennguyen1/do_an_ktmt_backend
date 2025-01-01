@@ -74,7 +74,7 @@ Content-Type: application/json
 
 
 ### Update relay
-PATCH http://127.0.0.1:8080/api/data/relay/update
+PATCH https://do-an-ktmt-backend.onrender.com/api/data/relay/update
 Content-Type: application/json
 
 {
