@@ -1,4 +1,4 @@
-from app.databases.databases import collection_sensor, collection_user, collection_relay, fs, collection_relay_history
+from app.databases.databases import collection_sensor, collection_user, collection_relay, fs, collection_relay_history, publish_to_adafruit
 from app.models.models import serialize_item
 from flask import Flask, request, jsonify, send_file
 from datetime import datetime
@@ -121,6 +121,8 @@ def update_data_relay_service():
     collection_relay.update_one(query, new_values)
 
     collection_relay_history.insert_one(data)
+
+    publish_to_adafruit(relay_name, 1 if status_relay == "ON" else 0)
 
         
     return {

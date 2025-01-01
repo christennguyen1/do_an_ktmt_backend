@@ -74,11 +74,11 @@ Content-Type: application/json
 
 
 ### Update relay
-PATCH http://127.0.0.1:5000/api/data/relay/update
+PATCH http://127.0.0.1:8080/api/data/relay/update
 Content-Type: application/json
 
 {
-    "relayName": "nutnhan1",
+    "relayName": "nutnhan2",
     "status": "OFF"
 }
 
