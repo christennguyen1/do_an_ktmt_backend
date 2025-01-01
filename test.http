@@ -79,7 +79,7 @@ Content-Type: application/json
 
 {
     "relayName": "nutnhan2",
-    "status": "OFF"
+    "status": "ON"
 }
 
 

@@ -6,6 +6,7 @@ import sys
 from Adafruit_IO import MQTTClient
 
 
+
 mongodb_uri = os.getenv("MONGODB_URI")
 client = MongoClient(
     mongodb_uri,
@@ -44,3 +45,4 @@ client.loop_background()
 def publish_to_adafruit(feed, value):
     print("Ket noi voi adafruit ...")
     client.publish(feed, value)
+    print(feed, " - ", value)
